@@ -2,7 +2,6 @@ package ufms.web.trabalho.matheus.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Qualifier;
 import ufms.web.trabalho.matheus.enumeration.SituacaoPessoa;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
 import javax.persistence.*;
@@ -11,6 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@Table(name = "TB_PESSOA")
 public class Pessoa {
 
     @Id
