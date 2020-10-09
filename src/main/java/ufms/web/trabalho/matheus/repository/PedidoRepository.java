@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM TB_PEDIDO WHERE PED_ID LIKE :name")
-    List<Pedido> consultaTest(@Param("name") Long name);//String name?
+//    @Query(nativeQuery = true, value = "SELECT * FROM TB_PEDIDO WHERE PED_ID LIKE :name")
+//    List<Pedido> consultaTest(@Param("name") Long name);//String name?
 }

@@ -3,6 +3,7 @@ package ufms.web.trabalho.matheus.entity;
 import lombok.Getter;
 import lombok.Setter;
 import ufms.web.trabalho.matheus.enumeration.StatusPedido;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,7 +18,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+//    @OneToMany
     @JoinColumn(name = "PES_ID")
     private Long idPessoa;
 

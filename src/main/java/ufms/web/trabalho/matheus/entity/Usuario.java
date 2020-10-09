@@ -3,7 +3,14 @@ package ufms.web.trabalho.matheus.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 
 @Getter
 @Setter
@@ -22,7 +29,7 @@ public class Usuario {
     @Column(name = "USU_LOG", nullable = false)
     private String login;
 
-    @Column(name = "USU_LOG", nullable = false)
+    @Column(name = "USU_SEN", nullable = false)
     private String senha;
 
     @OneToOne

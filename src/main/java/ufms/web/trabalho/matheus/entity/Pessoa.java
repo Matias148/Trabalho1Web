@@ -4,7 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import ufms.web.trabalho.matheus.enumeration.SituacaoPessoa;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
 import java.util.Date;
 
 @Getter
@@ -18,7 +25,7 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
+//    @OneToOne
     @JoinColumn(name = "PES_RES_ID")
     private Long idResponsavel;
 
