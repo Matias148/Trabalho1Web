@@ -19,18 +19,18 @@ public class Pedido {
     private Long id;
 
 //    @OneToMany
-    @JoinColumn(name = "PES_ID")
+    @JoinColumn(name = "PES_ID", nullable = false)
     private Long idPessoa;
 
-    @Column(name = "PES_STA")
+    @Column(name = "PES_STA", nullable = false)
     private StatusPedido status;
 
-    @Column(name = "PED_DAT_COM")
+    @Column(name = "PED_DAT_COM", nullable = false)
     private Date dataCompra;
 
-    @Column(name = "PED_DAT_ENT")
+    @Column(name = "PED_DAT_ENT", nullable = false)
     private Date dataEntrega;
 
-    @Column(name = "PED_DES")
+    @Column(name = "PED_DES", nullable = false)
     private Double percentualDesconto;
 }

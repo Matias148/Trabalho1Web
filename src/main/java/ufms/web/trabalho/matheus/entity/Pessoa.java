@@ -26,7 +26,7 @@ public class Pessoa {
     private Long id;
 
 //    @OneToOne
-    @JoinColumn(name = "PES_RES_ID")
+    @JoinColumn(name = "PES_RES_ID", nullable = false)
     private Long idResponsavel;
 
     @Column(name = "PES_TIP", nullable = false)

@@ -19,15 +19,15 @@ public class ItemPedido {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "PED_ID")
+    @JoinColumn(name = "PED_ID", nullable = false)
     private Pedido idPedido;
 //
     @Id
     @ManyToOne//?
-    @JoinColumn(name = "PRO_ID")
+    @JoinColumn(name = "PRO_ID", nullable = false)
     private Produto idProduto;
 
-    @Column(name = "ITE_PED_QUA")
+    @Column(name = "ITE_PED_QUA", nullable = false)
     private Long quantidade;
 }
 
