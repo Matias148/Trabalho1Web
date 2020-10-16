@@ -11,7 +11,7 @@ import ufms.web.trabalho.matheus.service.ItemPedidoService;
 import ufms.web.trabalho.matheus.service.PedidoService;
 
 @Controller
-@RequestMapping("/api/itemPedido")
+@RequestMapping("/api/item-pedido")
 public class ItemPedidoController {
 
     @Autowired

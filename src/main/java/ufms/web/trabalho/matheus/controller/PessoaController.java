@@ -30,6 +30,7 @@ public class PessoaController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<?> salvar(@RequestBody Pessoa usuario){
+        //System.out.println(usuario.getDataNascimento());
         return new ResponseEntity(pessoaService.salvar(usuario), HttpStatus.OK);
     }
 

@@ -25,9 +25,9 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @OneToOne
-    @JoinColumn(name = "PES_RES_ID", nullable = false)
-    private Long idResponsavel;
+    @OneToOne
+    @JoinColumn(name = "PES_RES_ID")
+    private Pessoa idResponsavel;
 
     @Column(name = "PES_TIP", nullable = false)
     private TipoPessoa tipo;
