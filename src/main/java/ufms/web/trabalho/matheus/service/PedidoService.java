@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ufms.web.trabalho.matheus.entity.Pedido;
 import ufms.web.trabalho.matheus.repository.PedidoRepository;
-import ufms.web.trabalho.matheus.repository.PedidoRepository;
 
 import java.util.List;
 import java.util.Optional;

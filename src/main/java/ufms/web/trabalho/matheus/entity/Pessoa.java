@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -42,5 +43,5 @@ public class Pessoa {
     private String apelido;
 
     @Column(name = "PES_DAT", nullable = false)
-    private Date dataNascimento; //data?
+    private LocalDate dataNascimento; //data?
 }

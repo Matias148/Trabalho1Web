@@ -8,6 +8,7 @@ import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
 import ufms.web.trabalho.matheus.repository.PessoaRepository;
 import ufms.web.trabalho.matheus.repository.UsuarioRepository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,8 +24,9 @@ public class PessoaService {
     }
 
     public Pessoa salvar(Pessoa pessoa) {
-        Date maioridade = new Date( 2002,10,30);
-        if (maioridade.after(pessoa.getDataNascimento())) {//maior de idade
+        LocalDate maioridade = LocalDate.parse("2020-10-30");
+        if (//maioridade.after(pessoa.getDataNascimento())
+        maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
             return pessoaRepository.save(pessoa);
         }else{
             if (pessoa.getIdResponsavel() == null && pessoa.getTipo() == TipoPessoa.FISICA){

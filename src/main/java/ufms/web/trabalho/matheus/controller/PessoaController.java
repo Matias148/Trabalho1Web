@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ufms.web.trabalho.matheus.entity.Pessoa;
+import ufms.web.trabalho.matheus.service.LoginService;
 import ufms.web.trabalho.matheus.service.PessoaService;
 
 @Controller
@@ -15,28 +16,42 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+    @Autowired
+    private LoginService loginService;
+
     @GetMapping("{id}")
     @ResponseBody
-    public ResponseEntity<?> buscarId(@PathVariable("id") Long id){
+    public ResponseEntity<?> buscarId(@PathVariable("id") Long id,
+                                      @RequestHeader("usuario") String usuario,
+                                      @RequestHeader("senha") String senha){
+        loginService.login(usuario, senha);
         return new ResponseEntity(pessoaService.buscarId(id), HttpStatus.OK);
     }
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> buscar(){
+    public ResponseEntity<?> buscar(
+            @RequestHeader("usuario") String usuario,
+            @RequestHeader("senha") String senha){
+        loginService.login(usuario, senha);
         return new ResponseEntity(pessoaService.buscarTodos(), HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> salvar(@RequestBody Pessoa usuario){
-        //System.out.println(usuario.getDataNascimento());
-        return new ResponseEntity(pessoaService.salvar(usuario), HttpStatus.OK);
+    public ResponseEntity<?> salvar(@RequestBody Pessoa pessoa,
+                                    @RequestHeader("usuario") String usuario,
+                                    @RequestHeader("senha") String senha){
+        loginService.loginAdm(usuario, senha);
+        return new ResponseEntity(pessoaService.salvar(pessoa), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
     @ResponseBody
-    public ResponseEntity<?> deletar(@PathVariable("id") Long id){
+    public ResponseEntity<?> deletar(@PathVariable("id") Long id,
+                                     @RequestHeader("usuario") String usuario,
+                                     @RequestHeader("senha") String senha){
+        loginService.loginAdm(usuario, senha);
         pessoaService.deletar(id);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
@@ -44,7 +59,10 @@ public class PessoaController {
     @PutMapping("{id}")
     @ResponseBody
     public ResponseEntity<?> alterar(@PathVariable("id") Long id,
-                                     @RequestBody Pessoa usuario){
-        return new ResponseEntity( pessoaService.alterar(id, usuario), HttpStatus.NO_CONTENT);
+                                     @RequestBody Pessoa pessoa,
+                                     @RequestHeader("usuario") String usuario,
+                                     @RequestHeader("senha") String senha){
+        loginService.loginAdm(usuario, senha);
+        return new ResponseEntity( pessoaService.alterar(id, pessoa), HttpStatus.NO_CONTENT);
     }
 }
