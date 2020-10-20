@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ufms.web.trabalho.matheus.entity.Pedido;
 import ufms.web.trabalho.matheus.entity.Produto;
+import ufms.web.trabalho.matheus.entity.Usuario;
 import ufms.web.trabalho.matheus.service.LoginService;
 import ufms.web.trabalho.matheus.service.PedidoService;
 import ufms.web.trabalho.matheus.service.ProdutoService;
@@ -35,8 +36,9 @@ public class ProdutoController {
     public ResponseEntity<?> buscar(
             @RequestHeader("usuario") String usuario,
             @RequestHeader("senha") String senha){
-        loginService.login(usuario, senha);
-        return new ResponseEntity(produtoService.buscarTodos(), HttpStatus.OK);
+        Usuario comprador = loginService.login(usuario, senha,1);
+//        return new ResponseEntity(produtoService.buscarTodos(comprador), HttpStatus.OK);
+        return new ResponseEntity(loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador), HttpStatus.OK);
     }
 
     @PostMapping
