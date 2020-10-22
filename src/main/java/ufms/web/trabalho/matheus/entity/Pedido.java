@@ -19,7 +19,6 @@ public class Pedido {
     private Long id;
 
     @ManyToOne
-    //@OneToMany
     @JoinColumn(name = "PES_IDE", nullable = false)
     private Pessoa idPessoa;
 

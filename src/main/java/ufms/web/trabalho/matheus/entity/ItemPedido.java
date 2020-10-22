@@ -21,9 +21,9 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "PED_ID", nullable = false)
     private Pedido idPedido;
-//
+
     @Id
-    @ManyToOne//?
+    @ManyToOne
     @JoinColumn(name = "PRO_ID", nullable = false)
     private Produto idProduto;
 

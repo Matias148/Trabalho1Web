@@ -12,10 +12,4 @@ public class MinhaConfiguration {
     public String hello(){
         return "valor da configuração";
     }
-
-    //@Bean("ufms.matheus.libras.repository.UsuarioRepository")
-    //public String teste(){
-    //    return null;
-    //}
-
 }
