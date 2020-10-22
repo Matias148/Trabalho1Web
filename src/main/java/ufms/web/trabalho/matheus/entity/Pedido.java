@@ -18,11 +18,12 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @OneToMany
-    @JoinColumn(name = "PES_ID", nullable = false)
-    private Long idPessoa;
+    @ManyToOne
+    //@OneToMany
+    @JoinColumn(name = "PES_IDE", nullable = false)
+    private Pessoa idPessoa;
 
-    @Column(name = "PES_STA", nullable = false)
+    @Column(name = "PED_STA", nullable = false)
     private StatusPedido status;
 
     @Column(name = "PED_DAT_COM", nullable = false)

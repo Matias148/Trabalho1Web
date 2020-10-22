@@ -3,13 +3,10 @@ package ufms.web.trabalho.matheus.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ufms.web.trabalho.matheus.entity.Pessoa;
-import ufms.web.trabalho.matheus.entity.Usuario;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
 import ufms.web.trabalho.matheus.repository.PessoaRepository;
-import ufms.web.trabalho.matheus.repository.UsuarioRepository;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

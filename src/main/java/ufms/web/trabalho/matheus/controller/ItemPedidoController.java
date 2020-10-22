@@ -6,10 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ufms.web.trabalho.matheus.entity.ItemPedido;
-import ufms.web.trabalho.matheus.entity.Pedido;
 import ufms.web.trabalho.matheus.service.ItemPedidoService;
 import ufms.web.trabalho.matheus.service.LoginService;
-import ufms.web.trabalho.matheus.service.PedidoService;
 
 @Controller
 @RequestMapping("/api/item-pedido")

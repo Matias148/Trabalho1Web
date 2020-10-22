@@ -5,11 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ufms.web.trabalho.matheus.entity.Pedido;
 import ufms.web.trabalho.matheus.entity.Produto;
 import ufms.web.trabalho.matheus.entity.Usuario;
 import ufms.web.trabalho.matheus.service.LoginService;
-import ufms.web.trabalho.matheus.service.PedidoService;
 import ufms.web.trabalho.matheus.service.ProdutoService;
 
 @Controller

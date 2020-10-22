@@ -4,21 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 import ufms.web.trabalho.matheus.enumeration.SituacaoPessoa;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinColumn;
+
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "TB_PESSOA")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
     @Id
@@ -43,5 +37,5 @@ public class Pessoa {
     private String apelido;
 
     @Column(name = "PES_DAT", nullable = false)
-    private LocalDate dataNascimento; //data?
+    private LocalDate dataNascimento;
 }

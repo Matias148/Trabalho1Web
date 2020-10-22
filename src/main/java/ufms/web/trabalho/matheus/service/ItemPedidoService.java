@@ -1,6 +1,5 @@
 package ufms.web.trabalho.matheus.service;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ufms.web.trabalho.matheus.entity.ItemPedido;
