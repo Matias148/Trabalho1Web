@@ -1,13 +1,16 @@
 package ufms.web.trabalho.matheus.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "TB_PRODUTO")
 public class Produto {
 
@@ -26,11 +29,11 @@ public class Produto {
     private Long idadePermitida;
 
     @Column(name = "PRO_PRE_COM", nullable = false)
-    private Double precoCompra;
+    private BigDecimal precoCompra;
 
     @Column(name = "PRO_PRE_VEN_FIS", nullable = false)
-    private Double precoVendaFisica;
+    private BigDecimal precoVendaFisica;
 
     @Column(name = "PRO_PRE_VEN_JUR", nullable = false)
-    private Double precoVendaJuridica;
+    private BigDecimal precoVendaJuridica;
 }

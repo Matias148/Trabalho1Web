@@ -5,10 +5,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ufms.web.trabalho.matheus.dto.ProdutoFisicoDTO;
+import ufms.web.trabalho.matheus.dto.ProdutoJuridicoDTO;
 import ufms.web.trabalho.matheus.entity.Produto;
 import ufms.web.trabalho.matheus.entity.Usuario;
+import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
 import ufms.web.trabalho.matheus.service.LoginService;
 import ufms.web.trabalho.matheus.service.ProdutoService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/api/produto")
@@ -35,8 +41,20 @@ public class ProdutoController {
             @RequestHeader("usuario") String usuario,
             @RequestHeader("senha") String senha){
         Usuario comprador = loginService.login(usuario, senha,1);
-//        return new ResponseEntity(produtoService.buscarTodos(comprador), HttpStatus.OK);
-        return new ResponseEntity(loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador), HttpStatus.OK);
+        List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
+        if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){
+            List<ProdutoFisicoDTO> lista = new ArrayList<>();
+            for (Produto produto: todosFiltroIdade) {
+                lista.add(ProdutoFisicoDTO.transformaEmDTO(produto));
+            }
+            return new ResponseEntity(lista, HttpStatus.OK);
+        }else{
+            List<ProdutoJuridicoDTO> lista = new ArrayList<>();
+            for (Produto produto: todosFiltroIdade) {
+                lista.add(ProdutoJuridicoDTO.transformaEmDTO(produto));
+            }
+            return new ResponseEntity(lista, HttpStatus.OK);
+        }
     }
 
     @PostMapping
