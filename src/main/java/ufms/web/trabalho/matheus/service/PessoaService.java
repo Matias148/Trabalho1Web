@@ -21,13 +21,12 @@ public class PessoaService {
     }
 
     public Pessoa salvar(Pessoa pessoa) {
-        LocalDate maioridade = LocalDate.parse("2020-10-30");
-        if (//maioridade.after(pessoa.getDataNascimento())
-        maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
+        LocalDate maioridade = LocalDate.parse("2002-10-30");
+        if (maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
             return pessoaRepository.save(pessoa);
         }else{
             if (pessoa.getIdResponsavel() == null && pessoa.getTipo() == TipoPessoa.FISICA){
-                return null;
+                throw new RuntimeException("Pessoas menores de idade precisam ter um responsável", null);
             }else{
                 return pessoaRepository.save(pessoa);
             }

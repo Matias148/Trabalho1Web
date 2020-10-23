@@ -27,8 +27,8 @@ public class Pessoa {
     @Column(name = "PES_TIP", nullable = false)
     private TipoPessoa tipo;
 
-    @Column(name = "PES_SIT", nullable = false)
-    private SituacaoPessoa situacao;
+    @Column(name = "PES_SIT")
+    private SituacaoPessoa situacao = SituacaoPessoa.ATIVO;
 
     @Column(name = "PES_NOM", nullable = false)
     private String nome;

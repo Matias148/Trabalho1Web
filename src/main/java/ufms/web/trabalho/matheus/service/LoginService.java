@@ -19,7 +19,6 @@ public class LoginService {
 
     public void login(String usuario, String senha){
         Usuario usuario1 = usuarioRepository.consultaHqlNomeSenha(usuario, senha);
-        //if (!usuario1.getLogin().equals(usuario) || !usuario1.getSenha().equals(senha)){
         if (usuario1 == null)   {
             throw new RuntimeException("Usuário ou senha incorretos", null);
         }
@@ -27,7 +26,6 @@ public class LoginService {
 
     public Usuario login(String usuario, String senha, int controle){
         Usuario usuario1 = usuarioRepository.consultaHqlNomeSenha(usuario, senha);
-        //if (!usuario1.getLogin().equals(usuario) || !usuario1.getSenha().equals(senha)){
         if (usuario1 == null){
             throw new RuntimeException("Usuário ou senha incorretos", null);
         }else{
@@ -46,8 +44,7 @@ public class LoginService {
 
     public void loginAdm(String usuario, String senha){
         Usuario usuario1 = usuarioRepository.consultaHqlNomeSenha(usuario, senha);
-        //if (!usuario1.getLogin().equals(usuario) || !usuario1.getSenha().equals(senha) || !usuario1.isAdministrador()){
-        if (usuario1 == null || !usuario1.isAdministrador()){
+        if (usuario1 == null || !usuario1.getIsAdministrador()){
             throw new RuntimeException("Usuário ou senha incorretos", null);
         }
     }

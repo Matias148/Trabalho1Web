@@ -17,15 +17,15 @@ public class Usuario {
     private Long id;
 
     @Column(name = "USU_ISA", nullable = false)
-    private boolean isAdministrador;
+    private Boolean isAdministrador;
 
-    @Column(name = "USU_LOG", nullable = false)
+    @Column(unique = true, name = "USU_LOG", nullable = false)
     private String login;
 
     @Column(name = "USU_SEN", nullable = false)
     private String senha;
 
     @OneToOne
-    @JoinColumn(name = "PES_ID")
+    @JoinColumn(name = "PES_ID", nullable = false)
     private Pessoa pessoa;
 }

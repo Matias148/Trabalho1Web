@@ -39,9 +39,7 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> salvar(@RequestBody Usuario usuario,
-                                    @RequestHeader("usuario") String usuario1,
-                                    @RequestHeader("senha") String senha){
+    public ResponseEntity<?> salvar(@RequestBody Usuario usuario){
         //loginService.login(usuario1, senha);//um usuário não precisa ser adm pra criar um usuário, se não ele não se
         //cadastra nunca
         return new ResponseEntity(usuarioService.salvar(usuario), HttpStatus.OK);
@@ -61,9 +59,9 @@ public class UsuarioController {
     @ResponseBody
     public ResponseEntity<?> alterar(@PathVariable("id") Long id,
                                      @RequestBody Usuario usuario,
-                                     @RequestHeader("usuario") String usuario1,
+                                     @RequestHeader("usuario") String login,
                                      @RequestHeader("senha") String senha){
-        loginService.loginAdm(usuario1, senha);
+        loginService.loginAdm(login, senha);
         return new ResponseEntity( usuarioService.alterar(id, usuario), HttpStatus.NO_CONTENT);
     }
 }

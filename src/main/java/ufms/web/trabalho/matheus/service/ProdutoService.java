@@ -18,16 +18,6 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-//    public List<Produto> buscarTodos(Usuario comprador){
-//        int idade;
-//        LocalDate agora = LocalDate.now();
-//        LocalDate nascimento = comprador.getPessoa().getDataNascimento();
-//
-//        idade = agora.getYear() - nascimento.getYear();
-//
-//        return produtoRepository.consultaComIdade((long)idade);
-//    }
-
     public Produto salvar(Produto Pedido){
         return produtoRepository.save(Pedido);
     }
