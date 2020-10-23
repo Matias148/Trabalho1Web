@@ -39,10 +39,9 @@ public class PessoaController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> salvar(@RequestBody Pessoa pessoa,
-                                    @RequestHeader("usuario") String usuario,
-                                    @RequestHeader("senha") String senha){
-        loginService.loginAdm(usuario, senha);
+    public ResponseEntity<?> salvar(@RequestBody Pessoa pessoa){
+        //loginService.loginAdm(usuario, senha);
+        //se precisar de login para criar uma pessoa, nao dá para criar um usuário, então não se cria nada
         return new ResponseEntity(pessoaService.salvar(pessoa), HttpStatus.OK);
     }
 

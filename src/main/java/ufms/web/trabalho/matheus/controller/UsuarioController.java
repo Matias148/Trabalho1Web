@@ -39,7 +39,11 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> salvar(@RequestBody Usuario usuario){
+    public ResponseEntity<?> salvar(@RequestBody Usuario usuario,
+                                    @RequestHeader("usuario") String usuario1,
+                                    @RequestHeader("senha") String senha){
+        loginService.login(usuario1, senha);//um usuário não precisa ser adm pra criar um usuário, se não ele não se
+        //cadastra nunca
         return new ResponseEntity(usuarioService.salvar(usuario), HttpStatus.OK);
     }
 

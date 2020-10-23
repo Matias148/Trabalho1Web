@@ -26,6 +26,6 @@ public class Usuario {
     private String senha;
 
     @OneToOne
-    @JoinColumn(name = "PES_ID", nullable = false)
+    @JoinColumn(name = "PES_ID")
     private Pessoa pessoa;
 }
