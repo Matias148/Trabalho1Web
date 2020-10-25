@@ -37,9 +37,8 @@ public class ProdutoController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> buscar(
-            @RequestHeader("usuario") String usuario,
-            @RequestHeader("senha") String senha){
+    public ResponseEntity<?> buscar(@RequestHeader("usuario") String usuario,
+                                    @RequestHeader("senha") String senha){
         Usuario comprador = loginService.login(usuario, senha,1);
         List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
         if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){

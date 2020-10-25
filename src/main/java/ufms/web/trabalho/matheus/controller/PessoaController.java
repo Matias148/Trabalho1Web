@@ -5,7 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import ufms.web.trabalho.matheus.dto.ProdutoFisicoDTO;
+import ufms.web.trabalho.matheus.entity.Fisica;
+import ufms.web.trabalho.matheus.entity.Juridica;
 import ufms.web.trabalho.matheus.entity.Pessoa;
+import ufms.web.trabalho.matheus.pojo.PessoaPojo;
 import ufms.web.trabalho.matheus.service.LoginService;
 import ufms.web.trabalho.matheus.service.PessoaService;
 
@@ -30,20 +34,29 @@ public class PessoaController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> buscar(
-            @RequestHeader("usuario") String usuario,
-            @RequestHeader("senha") String senha){
-        loginService.login(usuario, senha);
+    public ResponseEntity<?> buscar(@RequestHeader("usuario") String usuario,
+                                    @RequestHeader("senha") String senha){
+        //loginService.login(usuario, senha);
         return new ResponseEntity(pessoaService.buscarTodos(), HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<?> salvar(@RequestBody Pessoa pessoa){
+    public ResponseEntity<?> salvar(@RequestBody PessoaPojo pessoa){
         //loginService.loginAdm(usuario, senha);
         //se precisar de login para criar uma pessoa, nao dá para criar um usuário, então não se cria nada
+        //ProdutoFisicoDTO pfd = pessoa;
         return new ResponseEntity(pessoaService.salvar(pessoa), HttpStatus.OK);
     }
+
+//    @PostMapping
+//    @ResponseBody
+//    public ResponseEntity<?> salvar(@RequestBody Pessoa pessoa){
+//        //loginService.loginAdm(usuario, senha);
+//        //se precisar de login para criar uma pessoa, nao dá para criar um usuário, então não se cria nada
+//        //ProdutoFisicoDTO pfd = pessoa;
+//        return new ResponseEntity(pessoaService.salvar(pessoa), HttpStatus.OK);
+//    }
 
     @DeleteMapping("{id}")
     @ResponseBody
