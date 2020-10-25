@@ -29,19 +29,6 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
-//    public Pessoa salvar(Pessoa pessoa) {
-//        LocalDate maioridade = LocalDate.parse("2002-10-30");
-//        if (maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
-//            return pessoaRepository.save(pessoa);
-//        }else{
-//            if (pessoa.getIdResponsavel() == null && pessoa.getTipo() == TipoPessoa.FISICA){
-//                throw new RuntimeException("Pessoas menores de idade precisam ter um responsável", null);
-//            }else{
-//                return pessoaRepository.save(pessoa);
-//            }
-//        }
-//    }
-
     public Object salvar(PessoaPojo pessoa) {
         LocalDate maioridade = LocalDate.now();
                 //LocalDate.parse("2002-10-30");
@@ -58,17 +45,6 @@ public class PessoaService {
         }else{
             return pessoaJuridicaRepository.save(pessoa.gerarJuridica(pessoa));
         }
-
-//        if (maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
-//
-//            //return pessoaRepository.save(pessoa);
-//        }else{
-//            if (pessoa.getIdResponsavel() == null && pessoa.getTipo() == TipoPessoa.FISICA){
-//                throw new RuntimeException("Pessoas menores de idade precisam ter um responsável", null);
-//            }else{
-//                //return pessoaRepository.save(pessoa);
-//            }
-//        }
     }
 
     public Optional<Pessoa> buscarId(Long id){

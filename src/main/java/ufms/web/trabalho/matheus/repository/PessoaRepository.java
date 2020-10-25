@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ufms.web.trabalho.matheus.entity.Pessoa;
-import ufms.web.trabalho.matheus.entity.Usuario;
 
 import java.util.List;
 
