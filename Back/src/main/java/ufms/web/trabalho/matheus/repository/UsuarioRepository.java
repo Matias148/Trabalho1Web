@@ -1,0 +1,18 @@
+package ufms.web.trabalho.matheus.repository;
+
+import ufms.web.trabalho.matheus.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+
+//    @Query(nativeQuery = true, value = "SELECT * FROM TB_USUARIO WHERE USU_ID LIKE :name")
+//    List<Usuario> consultaTest(@Param("name") Long name);//String name?
+
+    @Query("SELECT u FROM Usuario u where u.login LIKE :name AND u.senha LIKE :senha")
+    Usuario consultaHqlNomeSenha(@Param("name") String name, @Param("senha") String senha);
+}
