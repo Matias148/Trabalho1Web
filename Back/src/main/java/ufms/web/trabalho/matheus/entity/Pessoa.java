@@ -3,6 +3,7 @@ package ufms.web.trabalho.matheus.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import ufms.web.trabalho.matheus.enumeration.EGenero;
 import ufms.web.trabalho.matheus.enumeration.SituacaoPessoa;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
 
@@ -40,4 +41,17 @@ public class Pessoa {
 
     @Column(name = "PES_DAT", nullable = false)
     private LocalDate dataNascimento;
+
+    @Transient
+    private Boolean realizouAlgumPedido;
+
+    @Transient
+    private Long idade;
+
+    @Transient
+    private EGenero genero;
+
+    public Pessoa(Long id) {
+        this.id = id;
+    }
 }
