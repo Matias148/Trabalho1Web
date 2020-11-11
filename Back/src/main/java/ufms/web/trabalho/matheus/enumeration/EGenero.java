@@ -1,5 +1,5 @@
 package ufms.web.trabalho.matheus.enumeration;
 
-public enum TipoPessoa {
-    FISICA, JURIDICA;
+public enum EGenero {
+    MASCULINO, FEMININO
 }
