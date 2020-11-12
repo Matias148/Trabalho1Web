@@ -32,6 +32,7 @@ public class ProdutoController {
                                       @RequestHeader("usuario") String usuario,
                                       @RequestHeader("senha") String senha){
         loginService.login(usuario, senha);
+
         return new ResponseEntity(produtoService.buscarId(id), HttpStatus.OK);
     }
 

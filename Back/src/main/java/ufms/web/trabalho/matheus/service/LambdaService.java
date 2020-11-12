@@ -15,6 +15,7 @@ public class LambdaService {
     @Autowired
     private LambdaRepository lambdaRepository;
 
+
     public List<Object> findAll() {
         Stream<String> teste = lambdaRepository.findAll()
                 .stream()
