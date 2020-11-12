@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/frontTrabalhoWeb.iml" filepath="$PROJECT_DIR$/frontTrabalhoWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Back/matheus.iml" filepath="$PROJECT_DIR$/../Back/matheus.iml" />
+    </modules>
+  </component>
+</project>
