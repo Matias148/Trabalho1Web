@@ -39,7 +39,7 @@ public class LoginService {
         LocalDate nascimento = comprador.getPessoa().getDataNascimento();
         idade = agora.getYear() - nascimento.getYear();
 
-        return  lista.stream().filter(produto -> produto.getIdadePermitida() >= idade).collect(Collectors.toList());
+        return  lista.stream().filter(produto -> produto.getIdadePermitida() <= idade).collect(Collectors.toList());
     }
 
     public void loginAdm(String usuario, String senha){

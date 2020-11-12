@@ -20,4 +20,8 @@ public class Fisica extends Pessoa {
 
     @Column(name = "PES_FIS_RG", nullable = false)//cada estado tem um tamanho
     private String rg;
+
+    public Fisica(Long id) {
+        super(id);
+    }
 }

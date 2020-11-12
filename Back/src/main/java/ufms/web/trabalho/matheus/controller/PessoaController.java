@@ -31,18 +31,25 @@ public class PessoaController {
 
     @GetMapping
     @ResponseBody
-    public ResponseEntity<?> buscar(//@RequestHeader("usuario") String usuario,
-                                    //@RequestHeader("senha") String senha
-    ){
-        //loginService.login(usuario, senha);
+    public ResponseEntity<?> buscarStream(@RequestHeader("usuario") String usuario,
+                                          @RequestHeader("senha") String senha,
+                                          @RequestHeader("idResponsavel") String idResponsavel,
+                                          @RequestHeader("nomeResponsavel") String nomeResponsavel,
+                                          @RequestHeader("tipo") String tipo,
+                                          @RequestHeader("situacao") String situacao){
+        loginService.login(usuario, senha);
+        return new ResponseEntity(pessoaService.buscaStream(idResponsavel, nomeResponsavel, tipo, situacao), HttpStatus.OK);
+    }
+
+    @GetMapping
+    @ResponseBody
+    public ResponseEntity<?> buscar(){
         return new ResponseEntity(pessoaService.buscarTodos(), HttpStatus.OK);
     }
 
     @PostMapping
     @ResponseBody
     public ResponseEntity<?> salvar(@RequestBody PessoaPojo pessoa){
-        //loginService.loginAdm(usuario, senha);
-        //se precisar de login para criar uma pessoa, nao dá para criar um usuário, então não se cria nada
         return new ResponseEntity(pessoaService.salvar(pessoa), HttpStatus.OK);
     }
 

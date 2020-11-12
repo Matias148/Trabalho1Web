@@ -28,6 +28,5 @@ public class LambdaService {
 
         teste.forEach(System.out::println);
         return null;
-//        return null;
     }
 }
