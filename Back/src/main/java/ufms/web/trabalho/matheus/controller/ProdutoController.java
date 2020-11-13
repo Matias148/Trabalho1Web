@@ -38,6 +38,31 @@ public class ProdutoController {
 
     @GetMapping
     @ResponseBody
+    public ResponseEntity<?> buscarStream(@RequestHeader("usuario") String usuario,
+                                          @RequestHeader("senha") String senha,
+                                          @RequestHeader("descricao") String descricao,
+                                          @RequestHeader("precoMinimo") String precoMinimo,
+                                          @RequestHeader("precoMaximo") String precoMaximo){
+        Usuario comprador = loginService.login(usuario, senha, 1);
+        List lista = new ArrayList<>();
+        List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
+        if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){
+            //List<ProdutoFisicoDTO> lista = new ArrayList<>();
+            for (Produto produto: todosFiltroIdade) {
+                lista.add(ProdutoFisicoDTO.transformaEmDTO(produto));
+            }
+        }else{
+            //List<ProdutoJuridicoDTO> lista = new ArrayList<>();
+            for (Produto produto: todosFiltroIdade) {
+                lista.add(ProdutoJuridicoDTO.transformaEmDTO(produto));
+            }
+        }
+        return new ResponseEntity(produtoService.buscarStream(descricao, precoMinimo, precoMaximo, comprador, lista)
+                , HttpStatus.OK);
+    }
+
+    @GetMapping
+    @ResponseBody
     public ResponseEntity<?> buscar(@RequestHeader("usuario") String usuario,
                                     @RequestHeader("senha") String senha){
         Usuario comprador = loginService.login(usuario, senha,1);

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ufms.web.trabalho.matheus.entity.Pessoa;
+import ufms.web.trabalho.matheus.entity.Usuario;
 import ufms.web.trabalho.matheus.pojo.PessoaPojo;
 import ufms.web.trabalho.matheus.service.LoginService;
 import ufms.web.trabalho.matheus.service.PessoaService;
