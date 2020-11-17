@@ -34,10 +34,10 @@ public class PessoaController {
     @ResponseBody
     public ResponseEntity<?> buscarStream(@RequestHeader("usuario") String usuario,
                                           @RequestHeader("senha") String senha,
-                                          @RequestHeader("idResponsavel") String idResponsavel,
-                                          @RequestHeader("nomeResponsavel") String nomeResponsavel,
-                                          @RequestHeader("tipo") String tipo,
-                                          @RequestHeader("situacao") String situacao){
+                                          @RequestParam(value = "idResponsavel", required = false) String idResponsavel,
+                                          @RequestParam(value = "nomeResponsavel", required = false) String nomeResponsavel,
+                                          @RequestParam(value = "tipo", required = false) String tipo,
+                                          @RequestParam(value = "situacao", required = false) String situacao){
         loginService.login(usuario, senha);
         return new ResponseEntity(pessoaService.buscaStream(idResponsavel, nomeResponsavel, tipo, situacao), HttpStatus.OK);
     }

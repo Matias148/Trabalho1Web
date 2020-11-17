@@ -40,9 +40,9 @@ public class ProdutoController {
     @ResponseBody
     public ResponseEntity<?> buscarStream(@RequestHeader("usuario") String usuario,
                                           @RequestHeader("senha") String senha,
-                                          @RequestHeader("descricao") String descricao,
-                                          @RequestHeader("precoMinimo") String precoMinimo,
-                                          @RequestHeader("precoMaximo") String precoMaximo){
+                                          @RequestParam(value = "descricao", required = false) String descricao,
+                                          @RequestParam(value = "precoMinimo", required = false) String precoMinimo,
+                                          @RequestParam(value = "precoMaximo", required = false) String precoMaximo){
         Usuario comprador = loginService.login(usuario, senha, 1);
         List lista = new ArrayList<>();
         List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);

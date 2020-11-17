@@ -12,9 +12,9 @@ import ufms.web.trabalho.matheus.repository.PessoaRepository;
 
 import javax.persistence.PessimisticLockException;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -49,25 +49,42 @@ public class PessoaService {
         }
     }
 
-    public Stream<?> buscaStream(String idResponsavel, String nomeResponsavel, String tipo,
-                            String situacao){
-        //preciso implemnetar bisca por nome
+    public List<?> buscaStream(String idResponsavel, String nomeResponsavel, String tipo, String situacao){
         Stream<?> busca;
-        if (tipo.equals(TipoPessoa.FISICA)){
+        if (tipo.equals(TipoPessoa.FISICA.toString())){
             busca = pessoaFisicaRepository.findAll().stream()
-                    .filter(pessoa -> pessoa.getIdResponsavel().equals(idResponsavel))
-                    .filter(pessoa -> pessoa.getTipo().equals(TipoPessoa.FISICA))
-                    .filter(pessoa -> pessoa.getSituacao().equals(situacao))
-                    .sorted(Comparator.comparing(Pessoa::getId))
-                    .map(Pessoa::getNome);
-        }else{
+                    .filter(pessoa -> { if (Objects.nonNull(idResponsavel)) {
+                                return pessoa.getIdResponsavel().getId().toString().equals(idResponsavel);
+                            }else{ return true; } }
+                    ).filter(pessoa -> pessoa.getTipo().equals(TipoPessoa.FISICA))
+                    .filter(pessoa -> { if (Objects.nonNull(situacao)) {
+                                return pessoa.getSituacao().toString().equals(situacao);
+                            }else{ return true; } }
+                    ).filter(pessoa ->{ if (Objects.nonNull(nomeResponsavel)){
+                            return pessoa.getIdResponsavel().getNome().equals(nomeResponsavel);
+                        }else { return true;} })
+                    .sorted(Comparator.comparing(Pessoa::getId));
+        }else if (tipo.equals(TipoPessoa.FISICA.toString())){
             busca = pessoaJuridicaRepository.findAll().stream()
                     .filter(pessoa -> pessoa.getTipo().equals(TipoPessoa.JURIDICA))
-                    .filter(pessoa -> pessoa.getSituacao().equals(situacao))
-                    .sorted(Comparator.comparing(Pessoa::getId))
-                    .map(Pessoa::getNome);
+                    .filter(pessoa -> {if (Objects.nonNull(situacao)){
+                                return pessoa.getSituacao().toString().equals(situacao);
+                            }else { return true; } })
+                    .sorted(Comparator.comparing(Pessoa::getId));
+        }else{
+            busca = pessoaRepository.findAll().stream()
+                    .filter(pessoa -> { if (Objects.nonNull(situacao)) {
+                                return pessoa.getSituacao().toString().equals(situacao);
+                            }else{ return true; } }
+                    ).filter(pessoa -> { if (Objects.nonNull(idResponsavel)) {
+                                    return pessoa.getIdResponsavel().toString().equals(idResponsavel);
+                            }else{ return true; } }
+                    ).filter(pessoa -> { if (Objects.nonNull(nomeResponsavel)){
+                                return pessoa.getIdResponsavel().getNome().equals(nomeResponsavel);
+                            }else { return true; } }
+                    ).sorted(Comparator.comparing(Pessoa::getId));
         }
-        return busca;
+        return busca.collect(Collectors.toList());
     }
 
     public Optional<Pessoa> buscarId(Long id){

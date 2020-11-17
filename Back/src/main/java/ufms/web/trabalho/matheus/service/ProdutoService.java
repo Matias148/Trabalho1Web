@@ -2,6 +2,8 @@ package ufms.web.trabalho.matheus.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ufms.web.trabalho.matheus.dto.ProdutoFisicoDTO;
+import ufms.web.trabalho.matheus.dto.ProdutoJuridicoDTO;
 import ufms.web.trabalho.matheus.entity.Produto;
 import ufms.web.trabalho.matheus.entity.Usuario;
 import ufms.web.trabalho.matheus.enumeration.TipoPessoa;
@@ -10,7 +12,9 @@ import ufms.web.trabalho.matheus.repository.ProdutoRepository;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -23,25 +27,45 @@ public class ProdutoService {
         return produtoRepository.findAll();
     }
 
-    public Stream<?> buscarStream(String descricao, String precoMinimo, String precoMaximo, Usuario comprador, List<Produto> lista){
-
+    public List<?> buscarStream(String descricao, String precoMinimo, String precoMaximo, Usuario comprador, List<Produto> lista){
         Stream<?> busca;
         if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)) {
             busca = lista.stream()
-                    .filter(produto -> produto.getPrecoVendaFisica().compareTo(new BigDecimal(precoMaximo)) <= 0)
-                    .filter(produto -> produto.getPrecoVendaFisica().compareTo(new BigDecimal(precoMinimo)) >= 0)
-                    .filter(produto -> produto.getDescricao().equals(descricao))
-                    .sorted(Comparator.comparing(Produto::getId))
-                    .map(Produto::getDescricao);
+                    .filter(produto -> {
+                        if (Objects.nonNull(precoMaximo)){
+                            return produto.getPrecoVendaFisica().compareTo(new BigDecimal(precoMaximo)) <= 0;
+                        }else { return true; }
+                    })
+                    .filter(produto -> {
+                        if (Objects.nonNull(precoMinimo)){
+                            return produto.getPrecoVendaFisica().compareTo(new BigDecimal(precoMinimo)) >= 0;
+                        }else { return true; }
+                    })
+                    .filter(produto -> {
+                        if (Objects.nonNull(descricao)){
+                            return produto.getDescricao().equals(descricao);
+                        }else { return true; }
+                    })
+                    .map(produto -> ProdutoFisicoDTO.transformaEmDTO(produto))
+                    .sorted(Comparator.comparing(ProdutoFisicoDTO::getId));
         }else{
             busca = lista.stream()
-                    .filter(produto -> produto.getPrecoVendaJuridica().compareTo(new BigDecimal(precoMaximo)) <= 0)
-                    .filter(produto -> produto.getPrecoVendaJuridica().compareTo(new BigDecimal(precoMinimo)) >= 0)
-                    .filter(produto -> produto.getDescricao().equals(descricao))
-                    .sorted(Comparator.comparing(Produto::getId))
-                    .map(Produto::getDescricao);
+                    .filter(produto -> {
+                        if (Objects.nonNull(precoMaximo)){
+                            return produto.getPrecoVendaJuridica().compareTo(new BigDecimal(precoMaximo)) <= 0;
+                        }else { return true; }
+                    }).filter(produto -> {
+                        if (Objects.nonNull(precoMinimo)){
+                            return produto.getPrecoVendaJuridica().compareTo(new BigDecimal(precoMinimo)) >= 0;
+                        }else { return true; }
+                    }).filter(produto -> {
+                        if (Objects.nonNull(descricao)){
+                            return produto.getDescricao().equals(descricao);
+                        }else { return true; }
+                    }).map(produto -> ProdutoJuridicoDTO.transformaEmDTO(produto))
+                    .sorted(Comparator.comparing(ProdutoJuridicoDTO::getId));
         }
-        return busca;
+        return busca.collect(Collectors.toList());
     }
 
     public Produto salvar(Produto Pedido){
