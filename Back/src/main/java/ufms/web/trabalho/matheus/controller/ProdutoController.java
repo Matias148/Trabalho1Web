@@ -61,26 +61,26 @@ public class ProdutoController {
                 , HttpStatus.OK);
     }
 
-    @GetMapping
-    @ResponseBody
-    public ResponseEntity<?> buscar(@RequestHeader("usuario") String usuario,
-                                    @RequestHeader("senha") String senha){
-        Usuario comprador = loginService.login(usuario, senha,1);
-        List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
-        if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){
-            List<ProdutoFisicoDTO> lista = new ArrayList<>();
-            for (Produto produto: todosFiltroIdade) {
-                lista.add(ProdutoFisicoDTO.transformaEmDTO(produto));
-            }
-            return new ResponseEntity(lista, HttpStatus.OK);
-        }else{
-            List<ProdutoJuridicoDTO> lista = new ArrayList<>();
-            for (Produto produto: todosFiltroIdade) {
-                lista.add(ProdutoJuridicoDTO.transformaEmDTO(produto));
-            }
-            return new ResponseEntity(lista, HttpStatus.OK);
-        }
-    }
+//    @GetMapping
+//    @ResponseBody
+//    public ResponseEntity<?> buscar(@RequestHeader("usuario") String usuario,
+//                                    @RequestHeader("senha") String senha){
+//        Usuario comprador = loginService.login(usuario, senha,1);
+//        List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
+//        if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){
+//            List<ProdutoFisicoDTO> lista = new ArrayList<>();
+//            for (Produto produto: todosFiltroIdade) {
+//                lista.add(ProdutoFisicoDTO.transformaEmDTO(produto));
+//            }
+//            return new ResponseEntity(lista, HttpStatus.OK);
+//        }else{
+//            List<ProdutoJuridicoDTO> lista = new ArrayList<>();
+//            for (Produto produto: todosFiltroIdade) {
+//                lista.add(ProdutoJuridicoDTO.transformaEmDTO(produto));
+//            }
+//            return new ResponseEntity(lista, HttpStatus.OK);
+//        }
+//    }
 
     @PostMapping
     @ResponseBody

@@ -42,11 +42,11 @@ public class PessoaController {
         return new ResponseEntity(pessoaService.buscaStream(idResponsavel, nomeResponsavel, tipo, situacao), HttpStatus.OK);
     }
 
-    @GetMapping
-    @ResponseBody
-    public ResponseEntity<?> buscar(){
-        return new ResponseEntity(pessoaService.buscarTodos(), HttpStatus.OK);
-    }
+//    @GetMapping
+//    @ResponseBody
+//    public ResponseEntity<?> buscar(){
+//        return new ResponseEntity(pessoaService.buscarTodos(), HttpStatus.OK);
+//    }
 
     @PostMapping
     @ResponseBody

@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "TB_PESSOA")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Builder
+//@Builder
 public class Pessoa {
 
     @Id
@@ -31,7 +31,7 @@ public class Pessoa {
     private TipoPessoa tipo;
 
     @Column(name = "PES_SIT")
-    private SituacaoPessoa situacao = SituacaoPessoa.ATIVO;
+    private SituacaoPessoa situacao;// = SituacaoPessoa.ATIVO;
 
     @Column(name = "PES_NOM", nullable = false)
     private String nome;
