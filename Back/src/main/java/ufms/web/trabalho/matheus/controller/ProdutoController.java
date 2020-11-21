@@ -15,6 +15,7 @@ import ufms.web.trabalho.matheus.service.ProdutoService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/produto")
@@ -31,9 +32,19 @@ public class ProdutoController {
     public ResponseEntity<?> buscarId(@PathVariable("id") Long id,
                                       @RequestHeader("usuario") String usuario,
                                       @RequestHeader("senha") String senha){
-        loginService.login(usuario, senha);
-
-        return new ResponseEntity(produtoService.buscarId(id), HttpStatus.OK);
+        Usuario comprador = loginService.login(usuario, senha, 1);
+        Optional<Produto> produto = produtoService.buscarId(id);
+        Produto teste = produto.orElse(null);
+        if (teste != null) {
+            if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)) {
+                ProdutoFisicoDTO fisico = ProdutoFisicoDTO.transformaEmDTO(teste);
+                return new ResponseEntity(fisico, HttpStatus.OK);
+            }else {
+                ProdutoJuridicoDTO juridico = ProdutoJuridicoDTO.transformaEmDTO(teste);
+                return new ResponseEntity(juridico, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity(null, HttpStatus.OK);
     }
 
     @GetMapping

@@ -34,7 +34,7 @@ public class PessoaService {
     }
 
     public Object salvar(PessoaPojo pessoa) {
-        LocalDate maioridade = LocalDate.parse("2002-10-30");
+        LocalDate maioridade = LocalDate.parse("2002-11-23");
 
         if (pessoa.getTipo().equals(TipoPessoa.FISICA)){
             if (maioridade.isAfter(pessoa.getDataNascimento())) {//maior de idade
