@@ -19,8 +19,8 @@ public class LambdaService {
     public List<Object> findAll() {
         Stream<String> teste = lambdaRepository.findAll()
                 .stream()
-                .filter(cliente -> cliente.getGenero().equals(EGenero.MASCULINO))
-                .filter(cliente -> cliente.getIdade() <= 10)
+//                .filter(cliente -> cliente.getGenero().equals(EGenero.MASCULINO))
+//                .filter(cliente -> cliente.getIdade() <= 10)
                 .sorted(Comparator.comparing(Pessoa::getId))
                 .map(Pessoa::getNome);
 

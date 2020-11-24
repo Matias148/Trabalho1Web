@@ -42,16 +42,16 @@ public class Pessoa {
     @Column(name = "PES_DAT", nullable = false)
     private LocalDate dataNascimento;
 
-    @Transient
-    private Boolean realizouAlgumPedido;
-
-    @Transient
-    private Long idade;
-
-    @Transient
-    private EGenero genero;
-
-    public Pessoa(Long id) {
-        this.id = id;
-    }
+//    @Transient
+//    private Boolean realizouAlgumPedido;
+//
+//    @Transient
+//    private Long idade;
+//
+//    @Transient
+//    private EGenero genero;
+//
+//    public Pessoa(Long id) {
+//        this.id = id;
+//    }
 }

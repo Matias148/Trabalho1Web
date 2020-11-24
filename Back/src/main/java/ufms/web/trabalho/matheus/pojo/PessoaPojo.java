@@ -29,7 +29,7 @@ public class PessoaPojo {
     private String cnpj;
 
     public Fisica gerarFisica(PessoaPojo pessoa){
-        Fisica ret = new Fisica(pessoa.getId());
+        Fisica ret = new Fisica();//pessoa.getId());
         ret.setId(pessoa.getId());
         ret.setIdResponsavel(pessoa.getIdResponsavel());
         ret.setTipo(pessoa.getTipo());
@@ -44,7 +44,7 @@ public class PessoaPojo {
     }
 
     public Juridica gerarJuridica(PessoaPojo pessoa){
-        Juridica ret = new Juridica(pessoa.getId());
+        Juridica ret = new Juridica();//pessoa.getId());
         ret.setId(pessoa.getId());
         ret.setIdResponsavel(pessoa.getIdResponsavel());
         ret.setTipo(pessoa.getTipo());

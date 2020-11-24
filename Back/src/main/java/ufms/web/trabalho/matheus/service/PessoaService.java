@@ -51,7 +51,7 @@ public class PessoaService {
 
     public List<?> buscaStream(String idResponsavel, String nomeResponsavel, String tipo, String situacao){
         Stream<?> busca;
-        if (tipo.equals(TipoPessoa.FISICA.toString())){
+        if (TipoPessoa.FISICA.toString().equals(tipo)){
             busca = pessoaFisicaRepository.findAll().stream()
                     .filter(pessoa -> { if (Objects.nonNull(idResponsavel)) {
                                 return pessoa.getIdResponsavel().getId().toString().equals(idResponsavel);
@@ -64,7 +64,7 @@ public class PessoaService {
                             return pessoa.getIdResponsavel().getNome().equals(nomeResponsavel);
                         }else { return true;} })
                     .sorted(Comparator.comparing(Pessoa::getId));
-        }else if (tipo.equals(TipoPessoa.FISICA.toString())){
+        }else if (TipoPessoa.JURIDICA.toString().equals(tipo)){
             busca = pessoaJuridicaRepository.findAll().stream()
                     .filter(pessoa -> pessoa.getTipo().equals(TipoPessoa.JURIDICA))
                     .filter(pessoa -> {if (Objects.nonNull(situacao)){
@@ -77,7 +77,7 @@ public class PessoaService {
                                 return pessoa.getSituacao().toString().equals(situacao);
                             }else{ return true; } }
                     ).filter(pessoa -> { if (Objects.nonNull(idResponsavel)) {
-                                    return pessoa.getIdResponsavel().toString().equals(idResponsavel);
+                                    return pessoa.getIdResponsavel().getId().toString().equals(idResponsavel);
                             }else{ return true; } }
                     ).filter(pessoa -> { if (Objects.nonNull(nomeResponsavel)){
                                 return pessoa.getIdResponsavel().getNome().equals(nomeResponsavel);

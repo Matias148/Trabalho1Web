@@ -18,7 +18,7 @@ public class Juridica extends Pessoa {
     @Column(name = "PES_JUR_CNPJ", length = 14, nullable = false)
     private String cnpj;
 
-    public Juridica(Long id) {
-        super(id);
-    }
+//    public Juridica(Long id) {
+//        super(id);
+//    }
 }
