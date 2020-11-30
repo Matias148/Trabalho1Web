@@ -15,3 +15,7 @@ console.log(usuario,senha);
 function index() {
     window.location = "index.html?usuario="+usuario+"&senha="+senha;
 }
+
+function produto() {
+    window.location = "produto.html?usuario="+usuario+"&senha="+senha;
+}
