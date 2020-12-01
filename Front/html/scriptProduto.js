@@ -28,11 +28,11 @@ function carregar() {
         }
     }).then(function (response) {
         console.log(response.data);
-        window.location = "menu.html?usuario="+usuario+"&senha="+senha;
+        //window.location = "menu.html?usuario="+usuario+"&senha="+senha;
     }).catch(function (response) {
         console.log(response.data);
-        window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
-            document.getElementById('senha').value;
+        //window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
+        //    document.getElementById('senha').value;
         //tirar ^
     });
 }

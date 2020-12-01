@@ -23,10 +23,8 @@ function entrar(){
         window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
             document.getElementById('senha').value;
     }).catch(function (response) {
-        console.log(response.data);
-        // window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
-        //     document.getElementById('senha').value;
-        // //tirar ^
+        console.log("Usuário ou senha incorretos")
+        //console.log(response.data);
     });
 }
 

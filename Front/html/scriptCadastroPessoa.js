@@ -42,22 +42,28 @@ function postar() {
 
     if (idRes == ''){idRes=null;}
 
-    axios.post('http://localhost:8080/api/pessoa', {
-        'idResponsavel': idRes,
-        'tipo': tipo,
-        'situacao': situ,
-        'nome': nome,
-        'apelido': ape,
-        'dataNascimento': data,
-        'cpf': cpf,
-        'rg': rg,
-        'cnpj': cnpj
-    }).then(function (response) {
-        console.log(response.data);
-        //window.location = "menu.html?usuario="+login+"&senha="+senha;
-    }).catch(function (response) {
-        console.log(response.data);
-        //tirar
-        //window.location = "menu.html?usuario="+login+"&senha="+senha;
-    });
+    var anos = data.toString().split("-")[0];
+    if (parseInt(anos) > 2002 && idRes == null) {
+        console.log("Menores de idade precisam ter um responsável");
+    }else {
+        axios.post('http://localhost:8080/api/pessoa', {
+            'idResponsavel': idRes,
+            'tipo': tipo,
+            'situacao': situ,
+            'nome': nome,
+            'apelido': ape,
+            'dataNascimento': data,
+            'cpf': cpf,
+            'rg': rg,
+            'cnpj': cnpj
+        }).then(function (response) {
+            console.log(response.data);
+            //window.location = "menu.html?usuario="+login+"&senha="+senha;
+        }).catch(function (response) {
+            console.log(response.data);
+            console.log("Campos preenchidos incorretamente");
+            //tirar
+            //window.location = "menu.html?usuario="+login+"&senha="+senha;
+        });
+    }
 }
