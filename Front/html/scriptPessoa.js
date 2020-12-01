@@ -12,14 +12,6 @@ if (url != "" && (url.includes("usuario"))) {
 }
 console.log(usuario,senha);
 
-function index() {
-    window.location = "index.html?usuario="+usuario+"&senha="+senha;
-}
-
-function produto() {
-    window.location = "produto.html?usuario="+usuario+"&senha="+senha;
-}
-
-function pessoa() {
-    window.location = "pessoa.html?usuario="+usuario+"&senha="+senha;
+function cadastroPessoa() {
+    window.location = "CadastroPessoa.html?usuario="+usuario+"&senha="+senha;
 }

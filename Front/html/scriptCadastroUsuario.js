@@ -3,7 +3,7 @@ var senha;
 
 var url = window.location.search;
 var vetLogSenha = url.split("&");
-if (url != "") {
+if (url != "" && (url.includes("usuario"))) {
     var vetLog = vetLogSenha[0].split("=");
     var vetSenha = vetLogSenha[1].split("=");
 
@@ -27,13 +27,13 @@ function inserirUsuario() {
         "isAdministrador": adm.checked,
         "login": login,
         "senha": senha,
-        "pessoa": pessoa
+        "pessoa": {'id': pessoa}
     }).then(function (response) {
         console.log(response.data);
         window.location = "menu.html?usuario="+login+"&senha="+senha;
     }).catch(function (response) {
         console.log(response.data);
         //tirar
-        window.location = "menu.html?usuario="+login+"&senha="+senha;
+        //window.location = "menu.html?usuario="+login+"&senha="+senha;
     });
 }
