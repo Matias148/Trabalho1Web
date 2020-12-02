@@ -10,7 +10,7 @@ if (url != "" && (url.includes("usuario"))) {
     usuario = vetLog[1];
     senha = vetSenha[1];
 }
-console.log(usuario,senha);
+//console.log(usuario,senha);
 
 function inserirUsuario() {
     var login = document.getElementById('login').value;
@@ -32,7 +32,7 @@ function inserirUsuario() {
         console.log(response.data);
         window.location = "menu.html?usuario="+login+"&senha="+senha;
     }).catch(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         //tirar
         //window.location = "menu.html?usuario="+login+"&senha="+senha;
     });

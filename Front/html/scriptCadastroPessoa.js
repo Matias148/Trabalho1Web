@@ -10,7 +10,7 @@ if (url != "" && (url.includes("usuario"))) {
     usuario = vetLog[1];
     senha = vetSenha[1];
 }
-console.log(usuario,senha);
+//console.log(usuario,senha);
 
 function teste() {
     var tipo = document.getElementById('tipo').value;
@@ -58,9 +58,9 @@ function postar() {
             'cnpj': cnpj
         }).then(function (response) {
             console.log(response.data);
-            //window.location = "menu.html?usuario="+login+"&senha="+senha;
+            window.location = "menu.html?usuario="+login+"&senha="+senha;
         }).catch(function (response) {
-            console.log(response.data);
+            //console.log(response.data);
             console.log("Campos preenchidos incorretamente");
             //tirar
             //window.location = "menu.html?usuario="+login+"&senha="+senha;

@@ -10,7 +10,7 @@ if (url != "" && (url.includes("usuario"))) {
     usuario = vetLog[1];
     senha = vetSenha[1];
 }
-console.log(usuario,senha);
+//console.log(usuario,senha);
 
 function cadastroPessoa() {
     window.location = "CadastroPessoa.html?usuario="+usuario+"&senha="+senha;
