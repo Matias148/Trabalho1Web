@@ -43,7 +43,7 @@ function postar() {
     if (idRes == ''){idRes=null;}
 
     var anos = data.toString().split("-")[0];
-    if (parseInt(anos) > 2002 && idRes == null) {
+    if (parseInt(anos) > 2002 && idRes == null && tipo != "JURIDICA") {
         console.log("Menores de idade precisam ter um responsável");
     }else {
         axios.post('http://localhost:8080/api/pessoa', {
