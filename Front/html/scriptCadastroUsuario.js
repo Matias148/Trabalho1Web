@@ -32,8 +32,6 @@ function inserirUsuario() {
         console.log(response.data);
         window.location = "menu.html?usuario="+login+"&senha="+senha;
     }).catch(function (response) {
-        //console.log(response.data);
-        //tirar
-        //window.location = "menu.html?usuario="+login+"&senha="+senha;
+        console.log("Campos preenchidos incorretamente");
     });
 }

@@ -60,10 +60,7 @@ function postar() {
             console.log(response.data);
             window.location = "menu.html?usuario="+login+"&senha="+senha;
         }).catch(function (response) {
-            //console.log(response.data);
             console.log("Campos preenchidos incorretamente");
-            //tirar
-            //window.location = "menu.html?usuario="+login+"&senha="+senha;
         });
     }
 }

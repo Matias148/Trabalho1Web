@@ -24,7 +24,6 @@ function entrar(){
             document.getElementById('senha').value;
     }).catch(function (response) {
         console.log("Usuário ou senha incorretos")
-        //console.log(response.data);
     });
 }
 

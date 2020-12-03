@@ -20,11 +20,23 @@ function postar() {
     var preVenFisi = document.getElementById('preVenFisi').value;
     var preVenJuri = document.getElementById('preVenJuri').value;
 
+    axios.get('http://localhost:8080/api/usuario', {
+        headers: {
+            'usuario': document.getElementById('login').value,
+            'senha': document.getElementById('senha').value
+        }
+    }).then(function (response) {
+        console.log(response.data);
+    }).catch(function (response) {
+        console.log("Usuário ou senha incorretos");
+        return;
+    });
+
 
     axios.post('http://localhost:8080/api/produto',
         {
             'descricao': descricao,
-            'quatidadeEstoque': quantidade,
+            'quantidadeEstoque': quantidade,
             'idadePermitida': idade,
             'precoCompra': preCom,
             'precoVendaFisica': preVenFisi,
@@ -40,9 +52,6 @@ function postar() {
         console.log(response.data);
         window.location = "menu.html?usuario="+login+"&senha="+senha;
     }).catch(function (response) {
-        //console.log(response.data);
         console.log("Campos preenchidos incorretamente");
-        //tirar
-        //window.location = "menu.html?usuario="+login+"&senha="+senha;
     });
 }
