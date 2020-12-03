@@ -1,11 +1,11 @@
-var usuario;
-var senha;
+let usuario;
+let senha;
 
-var url = window.location.search;
-var vetLogSenha = url.split("&");
+let url = window.location.search;
+let vetLogSenha = url.split("&");
 if (url != "" && (url.includes("usuario"))) {
-    var vetLog = vetLogSenha[0].split("=");
-    var vetSenha = vetLogSenha[1].split("=");
+    let vetLog = vetLogSenha[0].split("=");
+    let vetSenha = vetLogSenha[1].split("=");
 
     usuario = vetLog[1];
     senha = vetSenha[1];
@@ -58,7 +58,7 @@ function postar() {
             'cnpj': cnpj
         }).then(function (response) {
             console.log(response.data);
-            window.location = "menu.html?usuario="+login+"&senha="+senha;
+            window.location = "menu.html?usuario="+usuario+"&senha="+senha;
         }).catch(function (response) {
             console.log("Campos preenchidos incorretamente");
         });

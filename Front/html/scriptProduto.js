@@ -73,8 +73,5 @@ function carregar() {
         document.body.appendChild(div);
     }).catch(function (response) {
         console.log(response.data);
-        //window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
-        //    document.getElementById('senha').value;
-        //tirar ^
     });
 }

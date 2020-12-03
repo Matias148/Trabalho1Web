@@ -1,11 +1,11 @@
-var usuario;
-var senha;
+let usuario;
+let senha;
 
-var url = window.location.search;
-var vetLogSenha = url.split("&");
+let url = window.location.search;
+let vetLogSenha = url.split("&");
 if (url != "" && (url.includes("usuario"))) {
-    var vetLog = vetLogSenha[0].split("=");
-    var vetSenha = vetLogSenha[1].split("=");
+    let vetLog = vetLogSenha[0].split("=");
+    let vetSenha = vetLogSenha[1].split("=");
 
     usuario = vetLog[1];
     senha = vetSenha[1];
@@ -13,12 +13,12 @@ if (url != "" && (url.includes("usuario"))) {
 //console.log(usuario,senha);
 
 function postar() {
-    var descricao = document.getElementById('descri').value;
-    var quantidade = document.getElementById('quanti').value;
-    var idade = document.getElementById('idade').value;
-    var preCom = document.getElementById('preCom').value;
-    var preVenFisi = document.getElementById('preVenFisi').value;
-    var preVenJuri = document.getElementById('preVenJuri').value;
+    let descricao = document.getElementById('descri').value;
+    let quantidade = document.getElementById('quanti').value;
+    let idade = document.getElementById('idade').value;
+    let preCom = document.getElementById('preCom').value;
+    let preVenFisi = document.getElementById('preVenFisi').value;
+    let preVenJuri = document.getElementById('preVenJuri').value;
 
     axios.get('http://localhost:8080/api/usuario', {
         headers: {
@@ -50,7 +50,7 @@ function postar() {
         }
     ).then(function (response) {
         console.log(response.data);
-        window.location = "menu.html?usuario="+login+"&senha="+senha;
+        window.location = "menu.html?usuario="+usuario+"&senha="+senha;
     }).catch(function (response) {
         console.log("Campos preenchidos incorretamente");
     });
