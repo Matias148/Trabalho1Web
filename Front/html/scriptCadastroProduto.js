@@ -22,8 +22,8 @@ function postar() {
 
     axios.get('http://localhost:8080/api/usuario', {
         headers: {
-            'usuario': document.getElementById('login').value,
-            'senha': document.getElementById('senha').value
+            'usuario': usuario,
+            'senha': senha
         }
     }).then(function (response) {
         console.log(response.data);

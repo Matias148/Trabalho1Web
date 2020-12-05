@@ -42,12 +42,14 @@ function carregar() {
             var tbQuanti = document.createElement("td");
             var tbVenFis = document.createElement("td");
             var tbVenJur = document.createElement("td");
+            var btn = document.createElement("button");
 
 
             var descri = document.createTextNode(response.data[i].descricao);
             var quanti = document.createTextNode(response.data[i].quantidadeEstoque.toString());
             var venFis = document.createTextNode(response.data[i].precoVendaFisica.toString());
             var venJur = document.createTextNode(response.data[i].precoVendaJuridica.toString());
+            //var
 
             tbDescri.appendChild(descri);
             tbQuanti.appendChild(quanti);
