@@ -30,19 +30,19 @@ function teste() {
 }
 
 function postar() {
-    var tipo = document.getElementById('tipo').value;
-    var cpf = document.getElementById('cpf').value;
-    var rg = document.getElementById('rg').value;
-    var cnpj = document.getElementById('cnpj').value;
-    var idRes = document.getElementById('idRespon').value;
-    var situ = document.getElementById('situ').value;
-    var ape = document.getElementById('apelido').value;
-    var nome = document.getElementById('nome').value;
-    var data = document.getElementById('data').value;
+    let tipo = document.getElementById('tipo').value;
+    let cpf = document.getElementById('cpf').value;
+    let rg = document.getElementById('rg').value;
+    let cnpj = document.getElementById('cnpj').value;
+    let idRes = document.getElementById('idRespon').value;
+    let situ = document.getElementById('situ').value;
+    let ape = document.getElementById('apelido').value;
+    let nome = document.getElementById('nome').value;
+    let data = document.getElementById('data').value;
 
     if (idRes == ''){idRes=null;}
 
-    var anos = data.toString().split("-")[0];
+    let anos = data.toString().split("-")[0];
     if (parseInt(anos) > 2002 && idRes == null && tipo != "JURIDICA") {
         console.log("Menores de idade precisam ter um responsável");
     }else {

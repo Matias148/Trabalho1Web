@@ -16,7 +16,7 @@ function cadastroPessoa() {
 }
 
 function deletarPessoa(index) {
-    axios.delete('http://localhost:8080/api/pessoa'+index, {
+    axios.delete('http://localhost:8080/api/pessoa/'+index, {
         headers: {
             'usuario': usuario,
             'senha': senha
@@ -25,8 +25,8 @@ function deletarPessoa(index) {
 }
 
 function carregarPessoas(){
-    var nome1 = document.getElementById('nome').value;
-    var apelido1 = document.getElementById('apelido').value;
+    let nome1 = document.getElementById('nome').value;
+    let apelido1 = document.getElementById('apelido').value;
     console.log(usuario, senha);
     axios.get('http://localhost:8080/api/pessoa', {
         headers: {
@@ -34,39 +34,45 @@ function carregarPessoas(){
             'senha': senha
         }
     }).then(function (response) {
-        var div = document.createElement("div");
+        let div = document.createElement("div");
         div.id = "corpo";
         for (let i = 0; i < response.data.length; i++){
-            var nom = false;
-            var apelid = false;
+            let nom = false;
+            let apelid = false;
             if (response.data[i].nome.toString().includes(nome1.toString()) || nome1 == ""){
                 nom = true;}
             if (response.data[i].apelido.toString().includes(apelido1.toString()) || apelido1 == ""){
                 apelid = true;}
 
             if (nom && apelid){
-                var tabela = document.createElement("table");
-                var tblinha = document.createElement("tr");
-                var tbNome = document.createElement("td");
-                var tbApelido = document.createElement("td");
-                var tbTipo = document.createElement("td");
-                var tbSitu = document.createElement("td");
-                var tbBotao = document.createElement("td");
+                let tabela = document.createElement("table");
+                let tblinha = document.createElement("tr");
+                let tbNome = document.createElement("td");
+                let tbApelido = document.createElement("td");
+                let tbTipo = document.createElement("td");
+                let tbSitu = document.createElement("td");
+                let tbBotao2 = document.createElement("td");
 
-                var btn = document.createElement("button");
+                let botao2 = document.createElement("input");
 
-                var nome = document.createTextNode(response.data[i].nome);
-                var descri = document.createTextNode(response.data[i].apelido);
-                var tipo = document.createTextNode(response.data[i].tipo.toString());
-                var situ = document.createTextNode(response.data[i].situacao.toString());
-                var botaoNome = document.createTextNode("Deletar");
+                botao2.type = "button";
+                botao2.value = "Deletar?";
+                botao2.onclick = function () {
+                    axios.delete('http://localhost:8080/api/pessoa/'+response.data[i].id,
+                        {headers:
+                                {
+                                    'usuario': usuario,
+                                    'senha': senha
+                                }
+                        }
+                )};
 
-                btn.appendChild(botaoNome);
+                let nome = document.createTextNode(response.data[i].nome);
+                let descri = document.createTextNode(response.data[i].apelido);
+                let tipo = document.createTextNode(response.data[i].tipo.toString());
+                let situ = document.createTextNode(response.data[i].situacao.toString());
 
-                btn.id = "btn"+i;
-                //btn.onclick = deletarPessoa(i);
-
-                tbBotao.appendChild(tbBotao);
+                tbBotao2.appendChild(botao2);
                 tbNome.appendChild(nome);
                 tbApelido.appendChild(descri);
                 tbTipo.appendChild(tipo);
@@ -75,7 +81,7 @@ function carregarPessoas(){
                 tblinha.appendChild(tbApelido);
                 tblinha.appendChild(tbTipo);
                 tblinha.appendChild(tbSitu);
-                tblinha.appendChild(tbBotao);
+                tblinha.appendChild(tbBotao2);
                 tabela.appendChild(tblinha);
 
                 tbNome.style = "border: 1px solid blue";
@@ -85,14 +91,13 @@ function carregarPessoas(){
                 tabela.style = "border: 1px solid black";
                 div.appendChild(tabela);
             }
-
-            var corpo = document.getElementById('corpo');
-
-            document.body.removeChild(corpo);
-            document.body.appendChild(div);
         }
+        let corpo = document.getElementById('corpo');
+
+        document.body.removeChild(corpo);
+        document.body.appendChild(div);
     }).catch(function (response) {
-        console.log(response.data)
+        console.log(response.data);
         console.log("Usuário não existe no banco de dados");
     });
 }

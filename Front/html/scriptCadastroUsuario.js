@@ -1,11 +1,11 @@
-var usuario;
-var senha;
+let usuario;
+let senha;
 
-var url = window.location.search;
-var vetLogSenha = url.split("&");
+let url = window.location.search;
+let vetLogSenha = url.split("&");
 if (url != "" && (url.includes("usuario"))) {
-    var vetLog = vetLogSenha[0].split("=");
-    var vetSenha = vetLogSenha[1].split("=");
+    let vetLog = vetLogSenha[0].split("=");
+    let vetSenha = vetLogSenha[1].split("=");
 
     usuario = vetLog[1];
     senha = vetSenha[1];
@@ -13,10 +13,10 @@ if (url != "" && (url.includes("usuario"))) {
 //console.log(usuario,senha);
 
 function inserirUsuario() {
-    var login = document.getElementById('login').value;
-    var senha = document.getElementById('senha').value;
-    var adm = document.getElementById('adm');
-    var pessoa = document.getElementById('pessoa').value;
+    let login = document.getElementById('login').value;
+    let senha = document.getElementById('senha').value;
+    let adm = document.getElementById('adm');
+    let pessoa = document.getElementById('pessoa').value;
 
     if (login == "" || senha == "" || pessoa == ""){
         console.warn("Nenhum campo de texto pode ficar em branco");

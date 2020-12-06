@@ -69,8 +69,8 @@ public class PessoaService {
                     .filter(pessoa -> pessoa.getTipo().equals(TipoPessoa.JURIDICA))
                     .filter(pessoa -> {if (Objects.nonNull(situacao)){
                                 return pessoa.getSituacao().toString().equals(situacao);
-                            }else { return true; } })
-                    .sorted(Comparator.comparing(Pessoa::getId));
+                            }else { return true; } });
+                    //.sorted(Comparator.comparing(Fisica::getId));
         }else{
             busca = pessoaRepository.findAll().stream()
                     .filter(pessoa -> { if (Objects.nonNull(situacao)) {
@@ -82,7 +82,7 @@ public class PessoaService {
                     ).filter(pessoa -> { if (Objects.nonNull(nomeResponsavel)){
                                 return pessoa.getIdResponsavel().getNome().equals(nomeResponsavel);
                             }else { return true; } }
-                    ).sorted(Comparator.comparing(Pessoa::getId));
+                    );//.sorted(Comparator.comparing(Pessoa::getId));
         }
         return busca.collect(Collectors.toList());
     }

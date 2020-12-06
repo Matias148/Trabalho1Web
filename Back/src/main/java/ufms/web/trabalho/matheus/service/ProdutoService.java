@@ -46,8 +46,8 @@ public class ProdutoService {
                             return produto.getDescricao().equals(descricao);
                         }else { return true; }
                     })
-                    .map(produto -> ProdutoFisicoDTO.transformaEmDTO(produto))
-                    .sorted(Comparator.comparing(ProdutoFisicoDTO::getId));
+                    .map(produto -> ProdutoFisicoDTO.transformaEmDTO(produto));
+                    //.sorted(Comparator.comparing(ProdutoFisicoDTO::getId));
         }else{
             busca = lista.stream()
                     .filter(produto -> {
@@ -62,8 +62,8 @@ public class ProdutoService {
                         if (Objects.nonNull(descricao)){
                             return produto.getDescricao().equals(descricao);
                         }else { return true; }
-                    }).map(produto -> ProdutoJuridicoDTO.transformaEmDTO(produto))
-                    .sorted(Comparator.comparing(ProdutoJuridicoDTO::getId));
+                    }).map(ProdutoJuridicoDTO::transformaEmDTO);
+                    //.sorted(Comparator.comparing(ProdutoJuridicoDTO::getId));
         }
         return busca.collect(Collectors.toList());
     }

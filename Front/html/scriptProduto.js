@@ -1,11 +1,11 @@
-var usuario;
-var senha;
+let usuario;
+let senha;
 
-var url = window.location.search;
-var vetLogSenha = url.split("&");
+let url = window.location.search;
+let vetLogSenha = url.split("&");
 if (url != "" && (url.includes("usuario"))) {
-    var vetLog = vetLogSenha[0].split("=");
-    var vetSenha = vetLogSenha[1].split("=");
+    let vetLog = vetLogSenha[0].split("=");
+    let vetSenha = vetLogSenha[1].split("=");
 
     usuario = vetLog[1];
     senha = vetSenha[1];
@@ -36,20 +36,19 @@ function carregar() {
         let div = document.createElement("div");
         div.id = "corpo";
         for (let i = 0; i < response.data.length; i++) {
-            var tabela = document.createElement("table");
-            var tblinha = document.createElement("tr");
-            var tbDescri = document.createElement("td");
-            var tbQuanti = document.createElement("td");
-            var tbVenFis = document.createElement("td");
-            var tbVenJur = document.createElement("td");
+            let tabela = document.createElement("table");
+            let tblinha = document.createElement("tr");
+            let tbDescri = document.createElement("td");
+            let tbQuanti = document.createElement("td");
+            let tbVenFis = document.createElement("td");
+            let tbVenJur = document.createElement("td");
             var btn = document.createElement("button");
 
 
-            var descri = document.createTextNode(response.data[i].descricao);
-            var quanti = document.createTextNode(response.data[i].quantidadeEstoque.toString());
-            var venFis = document.createTextNode(response.data[i].precoVendaFisica.toString());
-            var venJur = document.createTextNode(response.data[i].precoVendaJuridica.toString());
-            //var
+            let descri = document.createTextNode(response.data[i].descricao);
+            let quanti = document.createTextNode(response.data[i].quantidadeEstoque.toString());
+            let venFis = document.createTextNode(response.data[i].precoVendaFisica.toString());
+            let venJur = document.createTextNode(response.data[i].precoVendaJuridica.toString());
 
             tbDescri.appendChild(descri);
             tbQuanti.appendChild(quanti);
