@@ -10,7 +10,6 @@ if (url != "" && (url.includes("usuario"))) {
     usuario = vetLog[1];
     senha = vetSenha[1];
 }
-//console.log(usuario,senha);
 
 function index() {
     window.location = "index.html?usuario="+usuario+"&senha="+senha;
