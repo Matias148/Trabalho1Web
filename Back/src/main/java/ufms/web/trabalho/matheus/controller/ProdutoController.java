@@ -55,21 +55,24 @@ public class ProdutoController {
                                           @RequestParam(value = "precoMinimo", required = false) String precoMinimo,
                                           @RequestParam(value = "precoMaximo", required = false) String precoMaximo){
         Usuario comprador = loginService.login(usuario, senha, 1);
-        List lista = new ArrayList<>();
+        //List lista = new ArrayList<>();
         List<Produto> todosFiltroIdade = loginService.retornaProdutosIdade(produtoService.buscarTodos(), comprador);
         if (comprador.getPessoa().getTipo().equals(TipoPessoa.FISICA)){
-            //List<ProdutoFisicoDTO> lista = new ArrayList<>();
+            List<ProdutoFisicoDTO> lista = new ArrayList<>();
             for (Produto produto: todosFiltroIdade) {
                 lista.add(ProdutoFisicoDTO.transformaEmDTO(produto));
             }
+            return new ResponseEntity(produtoService.buscarStreamFisico(descricao, precoMinimo, precoMaximo, lista)
+                    , HttpStatus.OK);
         }else{
-            //List<ProdutoJuridicoDTO> lista = new ArrayList<>();
+            List<ProdutoJuridicoDTO> lista = new ArrayList<>();
             for (Produto produto: todosFiltroIdade) {
                 lista.add(ProdutoJuridicoDTO.transformaEmDTO(produto));
             }
+            return new ResponseEntity(produtoService.buscarStreamJuridico(descricao, precoMinimo, precoMaximo, lista)
+                    , HttpStatus.OK);
         }
-        return new ResponseEntity(produtoService.buscarStream(descricao, precoMinimo, precoMaximo, comprador, lista)
-                , HttpStatus.OK);
+
     }
 
 //    @GetMapping
