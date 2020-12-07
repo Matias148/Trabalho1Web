@@ -18,11 +18,10 @@ function entrar(){
             'senha': document.getElementById('senha').value
         }
     }).then(function (response) {
-        console.log(response.data);
         window.location = "menu.html?usuario="+document.getElementById('login').value+"&senha="+
             document.getElementById('senha').value;
     }).catch(function (response) {
-        console.log("Usuário ou senha incorretos")
+        console.warn("Usuário ou senha incorretos")
     });
 }
 

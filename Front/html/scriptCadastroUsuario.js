@@ -28,9 +28,8 @@ function inserirUsuario() {
         "senha": senha,
         "pessoa": {'id': pessoa}
     }).then(function (response) {
-        console.log(response.data);
         window.location = "menu.html?usuario="+login+"&senha="+senha;
     }).catch(function (response) {
-        console.log("Campos preenchidos incorretamente");
+        console.warn("Campos preenchidos incorretamente");
     });
 }

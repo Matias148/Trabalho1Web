@@ -53,7 +53,6 @@ function carregar() {
         vendaTop.style = "border: 1px solid black";
 
         let nome = document.getElementById('nome').value;
-        console.log(nome);
         for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].descricao.includes(nome) || nome == '') {
                 let tblinha = document.createElement("tr");
@@ -69,13 +68,12 @@ function carregar() {
                 botao2.type = "button";
                 botao2.value = "Deletar";
                 botao2.onclick = function () {
-                    axios.delete('http://localhost:8080/api/produto/' + response.data[i].id,
-                        {
-                            headers: {
-                                'usuario': usuario,
-                                'senha': senha
-                            }
-                        })
+                    axios.delete('http://localhost:8080/api/produto/' + response.data[i].id, {
+                        headers: {
+                            'usuario': usuario,
+                            'senha': senha
+                        }
+                    })
                 };
 
                 botEdi.type = "button";
@@ -115,7 +113,6 @@ function carregar() {
         document.body.removeChild(corpo);
         document.body.appendChild(div);
     }).catch(function (response) {
-        console.log("erro fora")
-        console.log(response.data);
+        console.warn("Erro interno no Servidor");
     });
 }

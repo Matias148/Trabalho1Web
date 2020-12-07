@@ -73,7 +73,7 @@ function postar() {
     }).then(function (response) {
         console.log(response.data);
     }).catch(function (response) {
-        console.log("Usuário ou senha incorretos");
+        console.warn("Usuário ou senha incorretos");
         return;
     });
 
@@ -94,9 +94,8 @@ function postar() {
             }
         }
     ).then(function (response) {
-        console.log(response.data);
         window.location = "menu.html?usuario="+usuario+"&senha="+senha;
     }).catch(function (response) {
-        console.log("Campos preenchidos incorretamente");
+        console.warn("Campos preenchidos incorretamente");
     });
 }

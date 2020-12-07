@@ -117,7 +117,6 @@ function carregarPessoas(){
         document.body.removeChild(corpo);
         document.body.appendChild(div);
     }).catch(function (response) {
-        console.log(response.data);
-        console.log("Usuário não existe no banco de dados");
+        console.warn("Usuário não existe no banco de dados");
     });
 }

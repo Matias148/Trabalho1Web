@@ -56,7 +56,7 @@ function editar() {
 
     let anos = data.toString().split("-")[0];
     if (parseInt(anos) > 2002 && idRes == null && tipo != "JURIDICA") {
-        console.log("Menores de idade precisam ter um responsável");
+        console.warn("Menores de idade precisam ter um responsável");
     }else {
         axios.put('http://localhost:8080/api/pessoa', {
             'id': id,
@@ -76,10 +76,9 @@ function editar() {
                     'senha': senha
                 }
         }).then(function (response) {
-            console.log(response.data);
             window.location = "pessoa.html?usuario="+usuario+"&senha="+senha;
         }).catch(function (response) {
-            console.log("Campos preenchidos incorretamente");
+            console.warn("Campos preenchidos incorretamente");
         });
     }
 }
@@ -99,7 +98,7 @@ function postar() {
 
     let anos = data.toString().split("-")[0];
     if (parseInt(anos) > 2002 && idRes == null && tipo != "JURIDICA") {
-        console.log("Menores de idade precisam ter um responsável");
+        console.warn("Menores de idade precisam ter um responsável");
     }else {
         axios.post('http://localhost:8080/api/pessoa', {
             'idResponsavel': idRes,
@@ -112,10 +111,9 @@ function postar() {
             'rg': rg,
             'cnpj': cnpj
         }).then(function (response) {
-            console.log(response.data);
             window.location = "menu.html?usuario="+usuario+"&senha="+senha;
         }).catch(function (response) {
-            console.log("Campos preenchidos incorretamente");
+            console.warn("Campos preenchidos incorretamente");
         });
     }
 }
